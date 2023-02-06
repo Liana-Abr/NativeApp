@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {Button, Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Вход</Text>
@@ -17,7 +17,13 @@ export default function LoginScreen() {
                     style={styles.input}
                 />
                 <Pressable style={styles.button} >
-                    <Text style={styles.btnt}>Войти</Text>
+                    <Button
+                        title="Войти"
+                        onPress={() =>
+                            navigation.navigate('Lessons')
+                        }
+                        style={styles.btnt}
+                    >Войти</Button>
                 </Pressable>
             </View>
 

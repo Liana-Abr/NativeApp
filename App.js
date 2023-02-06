@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "./pages/HomeScreen";
 import AuthScreen from "./pages/AuthScreen";
 import LoginScreen from "./pages/LoginScreen";
+import LessonsScreen from "./pages/LessonsScreen";
+import LessonScreen from "./pages/LessonScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +24,8 @@ function App() {
                 />
                 <Stack.Screen name="Auth" component={AuthScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Lessons" component={LessonsScreen} />
+                <Stack.Screen name="Lesson" component={LessonScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
