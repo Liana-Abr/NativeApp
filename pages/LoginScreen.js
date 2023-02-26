@@ -6,7 +6,7 @@ export default function LoginScreen({navigation}) {
         <View style={styles.container}>
             <Text style={styles.text}>Вход</Text>
             <View>
-                <Text style={styles.bold}>Телефон или Логин</Text>
+                <Text style={styles.bold}>Почта</Text>
                 <TextInput
                     keyboardType="default"
                     style={styles.input}
@@ -33,6 +33,9 @@ export default function LoginScreen({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        position: "absolute",
+        top: 100,
+        left:80,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -49,9 +52,9 @@ const styles = StyleSheet.create({
     },
     input:{
         width: 250,
-        height:30,
-        marginTop: 20,
-        marginBottom: 20,
+        height:50,
+        padding:10,
+        marginBottom: 15,
         borderColor: "grey",
         borderWidth: 1,
         borderRadius: 5
@@ -67,6 +70,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 10,
         paddingHorizontal: 30,
+        marginTop:20,
         borderRadius: 4,
         elevation: 3,
         backgroundColor: '#f8d428',

@@ -10,25 +10,57 @@ import AuthScreen from "./pages/AuthScreen";
 import LoginScreen from "./pages/LoginScreen";
 import LessonsScreen from "./pages/LessonsScreen";
 import LessonScreen from "./pages/LessonScreen";
+import {StatusBar} from "expo-status-bar";
+import {Provider, useSelector} from "react-redux";
+import {store} from "./store";
 
 
 const Stack = createNativeStackNavigator();
 
-function App() {
-    return (
-        <NavigationContainer>
+//Если пользователь не вошел
+const AuthStack =()=>{
+    return(
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen}/>
+            <Stack.Screen name="Login" component={LoginScreen} />
+        </Stack.Navigator>
+    )
+}
+//Если пользователь вошел
+const MyStack =()=>{
+    return(
             <Stack.Navigator>
                 <Stack.Screen
                     name="Главный экран"
-                    component={HomeScreen}
+                    component={LessonsScreen}
                 />
-                <Stack.Screen name="Auth" component={AuthScreen} />
-                <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Lessons" component={LessonsScreen} />
-                <Stack.Screen name="Lesson" component={LessonScreen} />
+                {/*<Stack.Screen name="Auth" component={AuthScreen} />*/}
+                {/*<Stack.Screen name="Login" component={LoginScreen} />*/}
+                {/*<Stack.Screen name="Lessons" component={LessonsScreen} />*/}
+                {/*<Stack.Screen name="Lesson" component={LessonScreen} />*/}
             </Stack.Navigator>
+    )
+
+}
+const RootNavigation = ()=> {
+    const token = useSelector(state=> state.AuthReducers.authToken)
+    return (
+        <NavigationContainer>
+            {
+                token === null ?
+                    <AuthStack/> : <MyStack/>
+            }
         </NavigationContainer>
     );
+}
+
+const App =() =>{
+    return(
+        <Provider  store={store}>
+            <RootNavigation/>
+        </Provider>
+
+    )
 }
 
 export default App;
