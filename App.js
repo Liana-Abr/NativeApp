@@ -11,8 +11,10 @@ import LoginScreen from "./pages/LoginScreen";
 import LessonsScreen from "./pages/LessonsScreen";
 import LessonScreen from "./pages/LessonScreen";
 import {StatusBar} from "expo-status-bar";
-import {Provider, useSelector} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {store} from "./store";
+import {Init, Login} from "./store/actions";
+import {useEffect} from "react";
 
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +47,15 @@ const MyStack =()=>{
 const RootNavigation = ()=> {
     const token = useSelector(state=> state.AuthReducers.authToken)
     console.log(token)
+
+    const dispatch = useDispatch();
+    const init = () => {
+        dispatch(Init())
+    }
+    useEffect(() => {
+        init()
+    }, [])
+
     return (
         <NavigationContainer>
             {
