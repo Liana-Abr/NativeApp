@@ -1,10 +1,19 @@
 import {Button, Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import * as React from "react";
+import {useDispatch} from "react-redux";
+import {Logout} from "../store/actions";
 
 export default function LessonsScreen({navigation}) {
-
+    const dispatch = useDispatch();
+    const submit = () => {
+        dispatch(Logout())
+    }
     return (
         <View style={styles.container}>
+            <Button
+                title="Выход"
+                onPress={submit}
+            />
             <View style={styles.header}>
                 <Text style={styles.text}>Тут находятся все доступные уроки</Text>
                 <Pressable style={styles.button}>

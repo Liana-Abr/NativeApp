@@ -44,6 +44,7 @@ const MyStack =()=>{
 }
 const RootNavigation = ()=> {
     const token = useSelector(state=> state.AuthReducers.authToken)
+    console.log(token)
     return (
         <NavigationContainer>
             {

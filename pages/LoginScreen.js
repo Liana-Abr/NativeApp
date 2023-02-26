@@ -1,27 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import {Button, Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {Login} from "../store/actions";
 
 export default function LoginScreen({navigation}) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
+    const submit = () => {
+        dispatch(Login(username,password))
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Вход</Text>
+
             <View>
                 <Text style={styles.bold}>Почта</Text>
                 <TextInput
                     keyboardType="default"
                     style={styles.input}
+                    value={username}
+                    onChangeText={(text)=> setUsername(text)}
                 />
+
+
                 <Text style={ styles.bold }>Пароль</Text>
                 <TextInput
                     keyboardType="default"
                     style={styles.input}
+                    value={password}
+                    onChangeText={(text)=> setPassword(text)}
                 />
                 <Pressable style={styles.button} >
                     <Button
                         title="Войти"
-                        onPress={() =>
-                            navigation.navigate('Lessons')
-                        }
+                        onPress={submit}
+                        // onPress={() =>
+                        //     navigation.navigate('Lessons')
+                        // }
                         style={styles.btnt}
                     >Войти</Button>
                 </Pressable>
